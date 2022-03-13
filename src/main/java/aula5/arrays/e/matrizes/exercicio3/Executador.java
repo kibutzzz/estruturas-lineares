@@ -14,16 +14,16 @@ public class Executador {
 
     String resposta = "s";
     do {
-      System.out.println("digite mais uma nota");
+      impressora.imprimir("digite mais uma nota");
 
       grafico.adicionarNota(scanner.nextDouble());
       scanner.nextLine();
 
-      System.out.println("deseja adicionar mais uma nota? (s/n)");
+      impressora.imprimir("deseja adicionar mais uma nota? (s/n)");
       resposta = scanner.nextLine();
     } while ("s".equals(resposta));
 
-    System.out.println("resultado: ");
+    impressora.imprimir("resultado: ");
 
     grafico.imprimir();
 
