@@ -1,0 +1,46 @@
+@startuml cinema
+
+class Mapa {
+  - assentos: Assento[][]
+  + reservar(nome: string, fileira: int, coluna: int)
+}
+
+class Assento {
+  - nome: String
+  + Assento()
+  + estaOcupado(): boolean
+  + reservar(nome: String)
+}
+
+class Bootstrap {
+  + main(): void
+}
+
+' class ConversorDeColuna {
+'   + converter(string: coluna): int
+' }
+
+class MenuUi {
+  - itensMenu: ItemMenu[]
+  + mostrarOpcoes():void 
+  + selecionarOpcao():void
+}
+
+class ItemMenu {
+  - descricao: String
+  - acao: Consumer<Mapa>
+  - mapa: Mapa
+
+  + ItemMenu(descricao: String, mapa: Mapa, acao: Consumer<Mapa>)
+}
+
+
+Bootstrap ..> MenuUi
+' Bootstrap ..> ConversorDeColuna
+Mapa --> Assento
+MenuUi --> ItemMenu
+ItemMenu --> Mapa
+
+
+
+@enduml
