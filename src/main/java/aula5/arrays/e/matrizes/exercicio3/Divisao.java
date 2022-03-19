@@ -2,43 +2,44 @@ package aula5.arrays.e.matrizes.exercicio3;
 
 public class Divisao {
 
-  public static final String MENSAGEM_LIMITES_INVALIDOS = "Limite inferior não pode ser maior que o superior";
-  private final int limiteInferior;
-  private final int limiteSuperior;
-  private int total = 0;
+    public static final String MENSAGEM_LIMITES_INVALIDOS =
+            "Limite inferior não pode ser maior que o superior";
+    private final int limiteInferior;
+    private final int limiteSuperior;
+    private int total = 0;
 
-  public Divisao(int limiteUnico) {
-    this.limiteInferior = limiteUnico;
-    this.limiteSuperior = limiteUnico;
-  }
-
-  public Divisao(int limiteInferior, int limiteSuperior) {
-    if (limiteInferior > limiteSuperior) {
-      throw new IllegalArgumentException(MENSAGEM_LIMITES_INVALIDOS);
+    public Divisao(int limiteUnico) {
+        this.limiteInferior = limiteUnico;
+        this.limiteSuperior = limiteUnico;
     }
 
-    this.limiteInferior = limiteInferior;
-    this.limiteSuperior = limiteSuperior;
-  }
+    public Divisao(int limiteInferior, int limiteSuperior) {
+        if (limiteInferior > limiteSuperior) {
+            throw new IllegalArgumentException(MENSAGEM_LIMITES_INVALIDOS);
+        }
 
-  public boolean tentarAdicionar(double valor) {
-    if (valor >= limiteInferior && valor <= limiteSuperior) {
-      this.total++;
-      return true;
+        this.limiteInferior = limiteInferior;
+        this.limiteSuperior = limiteSuperior;
     }
 
-    return false;
-  }
+    public boolean tentarAdicionar(double valor) {
+        if (valor >= limiteInferior && valor <= limiteSuperior) {
+            this.total++;
+            return true;
+        }
 
-  public int getLimiteInferior() {
-    return limiteInferior;
-  }
+        return false;
+    }
 
-  public int getLimiteSuperior() {
-    return limiteSuperior;
-  }
+    public int getLimiteInferior() {
+        return limiteInferior;
+    }
 
-  public int getTotal() {
-    return total;
-  }
+    public int getLimiteSuperior() {
+        return limiteSuperior;
+    }
+
+    public int getTotal() {
+        return total;
+    }
 }

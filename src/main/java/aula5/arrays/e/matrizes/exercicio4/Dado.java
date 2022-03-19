@@ -4,13 +4,13 @@ import java.util.Random;
 
 public class Dado {
 
-  private Random random;
+    private Random random;
 
-  public Dado() {
-    this.random = new Random();
-  }
+    public Dado() {
+        this.random = new Random();
+    }
 
-  public int lancar() {
-    return random.nextInt(6) + 1;
-  }
+    public int lancar() {
+        return random.nextInt(6) + 1;
+    }
 }
