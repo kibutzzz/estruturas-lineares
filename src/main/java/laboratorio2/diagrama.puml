@@ -2,7 +2,8 @@
 
 class Mapa {
   - assentos: Assento[][]
-  + reservar(nome: string, fileira: int, coluna: int)
+  + Mapa(tamanho: int)
+  + reservar(nome: String, fileira: int, coluna: int)
 }
 
 class Assento {
@@ -15,10 +16,6 @@ class Assento {
 class Bootstrap {
   + main(): void
 }
-
-' class ConversorDeColuna {
-'   + converter(string: coluna): int
-' }
 
 class MenuUi {
   - itensMenu: ItemMenu[]
@@ -37,7 +34,7 @@ class ItemMenu {
 
 Bootstrap ..> MenuUi
 ' Bootstrap ..> ConversorDeColuna
-Mapa --> Assento
+Mapa *-- Assento
 MenuUi --> ItemMenu
 ItemMenu --> Mapa
 
