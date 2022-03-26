@@ -57,11 +57,13 @@
                             <includes>
                                 <include>*.md</include>
                                 <include>.gitignore</include>
+                                <include>src/**/*.java</include>
                             </includes>
                             <trimTrailingWhitespace/>
                             <endWithNewline/>
                             <indent>
                                 <spaces>true</spaces>
+                                <spacesPerTab>2</spacesPerTab>
                             </indent>
                         </format>
                     </formats>
