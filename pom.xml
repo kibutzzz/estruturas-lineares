@@ -43,6 +43,14 @@
                 <groupId>com.diffplug.spotless</groupId>
                 <artifactId>spotless-maven-plugin</artifactId>
                 <version>2.21.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>apply</goal>
+                        </goals>
+                        <phase>compile</phase>
+                    </execution>
+                </executions>
                 <configuration>
                     <formats>
                         <format>
@@ -54,7 +62,6 @@
                             <endWithNewline/>
                             <indent>
                                 <spaces>true</spaces>
-
                             </indent>
                         </format>
                     </formats>
