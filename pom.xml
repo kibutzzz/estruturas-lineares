@@ -23,9 +23,11 @@
                 <configuration>
                     <targetClasses>
                         <param>aula*.**</param>
+                        <param>laboratorio*.**</param>
                     </targetClasses>
                     <targetTests>
                         <param>aula*.**</param>
+                        <param>laboratorio*.**</param>
                     </targetTests>
 
                 </configuration>
