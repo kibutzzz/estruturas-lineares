@@ -3,10 +3,10 @@ package laboratorio1;
 public class Conta {
 
     private double saldo;
-    private final String NUMERO;
+    private final String numero;
 
     public Conta(String numero) {
-        this.NUMERO = numero;
+        this.numero = numero;
         this.saldo = 0;
     }
 
@@ -36,6 +36,6 @@ public class Conta {
 
     @Override
     public String toString() {
-        return String.format("Conta #%s: Saldo atual R$%.2f", this.NUMERO, this.saldo);
+        return String.format("Conta #%s: Saldo atual R$%.2f", this.numero, this.saldo);
     }
 }
