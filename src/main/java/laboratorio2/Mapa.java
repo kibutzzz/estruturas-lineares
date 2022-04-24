@@ -55,9 +55,9 @@ public class Mapa {
 
     public int getTotalDeAssentosOcupados() {
         var contador = 0;
-        for (var fileira: assentos) {
-            for (var assento: fileira) {
-                if(assento.estaOcupado()) {
+        for (var fileira : assentos) {
+            for (var assento : fileira) {
+                if (assento.estaOcupado()) {
                     contador++;
                 }
             }

@@ -19,12 +19,12 @@ public class AcaoMostrar implements Consumer<Mapa> {
         logger.imprimirLinha(TITULO);
         mapa.mostrar();
 
-        logger.imprimirLinha(calcularTextoDeTotais(mapa.getTotalDeAssentosLivres(), mapa.getTotalDeAssentosOcupados()));
+        logger.imprimirLinha(
+                calcularTextoDeTotais(
+                        mapa.getTotalDeAssentosLivres(), mapa.getTotalDeAssentosOcupados()));
     }
 
     private String calcularTextoDeTotais(int livres, int ocupados) {
         return "Total de assentos (livres/ocupados): " + livres + "/" + ocupados;
     }
-
-
 }

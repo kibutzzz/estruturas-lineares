@@ -78,16 +78,16 @@ class MapaTest {
     @Test
     void shouldHandleInvalidPosition() {
         final var exception =
-            assertThrows(IllegalArgumentException.class, () -> mapa.reservar("bla", 0, 3));
+                assertThrows(IllegalArgumentException.class, () -> mapa.reservar("bla", 0, 3));
 
         assertEquals("Posição selecionada não é valida", exception.getMessage());
     }
 
     @Test
     void shouldCountTotalsCorrectly() {
-        final var mapaGrande = new Mapa(logger, 12,14);
+        final var mapaGrande = new Mapa(logger, 12, 14);
 
-        mapaGrande.reservar("reservado", 4,4);
+        mapaGrande.reservar("reservado", 4, 4);
         assertEquals(167, mapaGrande.getTotalDeAssentosLivres());
         assertEquals(1, mapaGrande.getTotalDeAssentosOcupados());
     }
