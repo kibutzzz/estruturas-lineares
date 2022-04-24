@@ -14,7 +14,6 @@ public class AcaoSair implements Consumer<Mapa> {
 
     @Override
     public void accept(Mapa mapa) {
-        System.out.println("Saindo");
         ui.setSaida(true);
     }
 }
