@@ -30,7 +30,7 @@ public class ExtratorDeCoordenadas {
         return codigo.chars().findFirst().orElseThrow() - OFFSET_ASCII;
     }
 
-    public boolean posicaoEValida(String posicao) {
+    private boolean posicaoEValida(String posicao) {
         if (isNull(posicao)) {
             return false;
         }
