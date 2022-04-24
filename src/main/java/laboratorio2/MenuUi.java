@@ -1,32 +1,32 @@
 package laboratorio2;
 
-import java.util.Objects;
+import java.util.List;
+import laboratorio2.helper.SimpleLogger;
 
 public class MenuUi {
 
-    private final ItemMenu[] itensMenu;
+    private final List<ItemMenu> itensMenu;
+    private final SimpleLogger logger;
     private boolean sair = false;
 
-    public MenuUi(ItemMenu[] opcoes) {
+    public MenuUi(List<ItemMenu> opcoes, SimpleLogger logger) {
         itensMenu = opcoes;
+        this.logger = logger;
     }
 
     public void mostrarOpcoes() {
-        for (int i = 0; i < itensMenu.length; i++) {
-            final var item = itensMenu[i];
-            if (Objects.isNull(item)) {
-                continue;
-            }
-
-            System.out.println(i + " - " + itensMenu[i].getDescricao());
+        for (int i = 0; i < itensMenu.size(); i++) {
+            logger.imprimirLinha(i + " - " + itensMenu.get(i).getDescricao());
         }
     }
 
     public void selecionar(int i) {
         try {
-            itensMenu[i].executar();
+            itensMenu.get(i).executar();
+        } catch (IndexOutOfBoundsException ex) {
+            logger.imprimirLinha("Opcão invalida");
         } catch (Exception exception) {
-            System.out.println(exception.getMessage());
+            logger.imprimirLinha(exception.getMessage());
         }
     }
 
