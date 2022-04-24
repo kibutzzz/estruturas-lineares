@@ -1,15 +1,54 @@
 @startuml cinema
 
+class SimpleLogger {
+  + SimpleLogger(printStream: PrintStream);
+  + imprimirLinha(texto: String);
+  + imprimir(text: String);
+  + quebrarLinha();
+}
+
+class SimpleInput {
+  + SimpleInput(scanner: Scanner);
+  + lerLinha(): String
+  + lerInteiro(): int
+}
+
+class ExtratorDeCoordenadas {
+  + extrair(posicao: String): int[]
+}
+
+class AcaoCancelar implements Consumer {
+  + AcaoCancelar(input: SimpleInput, logger: SimpleLogger, extrator: ExtratorDeCoordenadas)
+  + accept(mapa: Mapa)
+}
+
+class AcaoMostrar implements Consumer {
+  + AcaoMostrar(logger: SimpleLogger)
+  + accept(mapa: Mapa)
+}
+
+class AcaoReservar implements Consumer {
+  + AcaoReservar(input: SimpleInput, logger: SimpleLogger, extrator: ExtratorDeCoordenadas)
+  + accept(mapa: Mapa)
+}
+
+class AcaoSair implements Consumer {
+  + AcaoSair(ui: MenuUi)
+  + accept(mapa: Mapa)
+}
+
 class Mapa {
   - assentos: Assento[][]
-  + Mapa(tamanho: int)
+  + Mapa(logger: SimpleLogger, tamanhoVertical: int, tamanhoHorizontal int)
   + reservar(nome: String, fileira: int, coluna: int)
+  + cancelar(fileira: int, coluna: int)
+  + mostrar()
 }
 
 class Assento {
   - nome: String
-  + Assento()
   + estaOcupado(): boolean
+  + getNome() : String
   + reservar(nome: String)
 }
 
@@ -19,8 +58,13 @@ class Bootstrap {
 
 class MenuUi {
   - itensMenu: ItemMenu[]
+  - sair: boolean
+
+  + MenuUi(opcoes: List<ItemMenu>, logger: SimpleLogger)
   + mostrarOpcoes():void 
-  + selecionarOpcao():void
+  + selecionar():void
+  + setSaida(deveSair: boolean);
+  + getSaida(): boolean
 }
 
 class ItemMenu {
@@ -29,12 +73,36 @@ class ItemMenu {
   - mapa: Mapa
 
   + ItemMenu(descricao: String, mapa: Mapa, acao: Consumer<Mapa>)
+  + executar()
+  + getDescricao(): String
+}
+
+interface Consumer<T> {
+
+  + accept(object T)
 }
 
 
 Bootstrap ..> MenuUi
-' Bootstrap ..> ConversorDeColuna
+ItemMenu --> Consumer
+AcaoCancelar ..> ExtratorDeCoordenadas
+AcaoReservar ..> ExtratorDeCoordenadas
+
+AcaoMostrar ..> SimpleLogger
+AcaoCancelar ..> SimpleLogger
+AcaoReservar ..> SimpleLogger
+
+AcaoSair ..> MenuUi
+
+AcaoMostrar ..> SimpleInput
+AcaoCancelar ..> SimpleInput
+AcaoReservar ..> SimpleInput
+
+
+
 Mapa *-- Assento
+MenuUi ..> SimpleInput
+Mapa ..> SimpleLogger
 MenuUi --> ItemMenu
 ItemMenu --> Mapa
 
