@@ -46,8 +46,13 @@ public class Boostrap {
         while (!ui.getSaida()) {
             ui.mostrarOpcoes();
             logger.imprimirLinha("Selecione a opcão: ");
-            final var selecao = input.lerInteiro();
-            ui.selecionar(selecao);
+            try {
+                final var selecao = input.lerInteiro();
+                ui.selecionar(selecao);
+            } catch (Exception exception) {
+                input.lerLinha();
+                logger.imprimirLinha("Opção invalida. Tente novamente");
+            }
         }
     }
 }
