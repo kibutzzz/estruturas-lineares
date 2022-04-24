@@ -43,8 +43,7 @@ public class Boostrap {
 
         opcoes.add(new ItemMenu(MENSAGEM_SAIR, new AcaoSair(ui), mapa));
 
-
-        //TODO isolar o loop no menu ui
+        // TODO isolar o loop no menu ui
         while (!ui.getSaida()) {
             ui.mostrarOpcoes();
             logger.imprimirLinha("Selecione a opcão: ");
