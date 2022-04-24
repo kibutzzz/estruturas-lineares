@@ -21,7 +21,7 @@ class MapaTest {
 
     @BeforeEach
     void setup() {
-        mapa = new Mapa(logger, 2);
+        mapa = new Mapa(logger, 2, 2);
     }
 
     @Test
@@ -29,17 +29,23 @@ class MapaTest {
         mapa.mostrar();
 
         final var order = inOrder(logger);
+        then(logger).should(order, times(1)).imprimirLinha("            1\t            2\t");
+        then(logger).should(order).imprimir("  A ");
         then(logger).should(order, times(2)).imprimir("[            ]\t");
         then(logger).should(order).imprimirLinha("");
+        then(logger).should(order).imprimir("  B ");
         then(logger).should(order, times(2)).imprimir("[            ]\t");
     }
 
     @Test
     void shouldThrowExceptionWhenSizeIsInvalid() {
-        final var exception =
-                assertThrows(IllegalArgumentException.class, () -> new Mapa(logger, 0));
+        final var verticalException =
+                assertThrows(IllegalArgumentException.class, () -> new Mapa(logger, 0, 1));
+        final var horizontalException =
+                assertThrows(IllegalArgumentException.class, () -> new Mapa(logger, 1, 0));
 
-        assertEquals("Tamanho deve ser maior que 0", exception.getMessage());
+        assertEquals("Tamanho deve ser maior que 0", verticalException.getMessage());
+        assertEquals("Tamanho deve ser maior que 0", horizontalException.getMessage());
     }
 
     @Test

@@ -22,7 +22,7 @@ public class Boostrap {
         final var logger = new SimpleLogger(System.out);
 
         final var extratorDeCoordenadas = new ExtratorDeCoordenadas();
-        final var mapa = new Mapa(logger, 10);
+        final var mapa = new Mapa(logger, 12, 14);
 
         final var opcoes = new ArrayList<ItemMenu>();
 
@@ -43,6 +43,8 @@ public class Boostrap {
 
         opcoes.add(new ItemMenu(MENSAGEM_SAIR, new AcaoSair(ui), mapa));
 
+
+        //TODO isolar o loop no menu ui
         while (!ui.getSaida()) {
             ui.mostrarOpcoes();
             logger.imprimirLinha("Selecione a opcão: ");
