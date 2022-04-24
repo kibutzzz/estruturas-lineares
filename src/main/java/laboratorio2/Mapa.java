@@ -53,6 +53,22 @@ public class Mapa {
         }
     }
 
+    public int getTotalDeAssentosOcupados() {
+        var contador = 0;
+        for (var fileira: assentos) {
+            for (var assento: fileira) {
+                if(assento.estaOcupado()) {
+                    contador++;
+                }
+            }
+        }
+        return contador;
+    }
+
+    public int getTotalDeAssentosLivres() {
+        return assentos.length * assentos[0].length - getTotalDeAssentosOcupados();
+    }
+
     private String calcularCabecalho() {
         return format("%13s\t".repeat(assentos[0].length), getColunas());
     }
