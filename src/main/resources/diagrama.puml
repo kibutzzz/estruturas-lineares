@@ -43,6 +43,8 @@ class Mapa {
   + reservar(nome: String, fileira: int, coluna: int)
   + cancelar(fileira: int, coluna: int)
   + mostrar()
+  + getTotalDeAssentosLivres()
+  + getTotalDeAssentosOcupados()
 }
 
 class Assento {
