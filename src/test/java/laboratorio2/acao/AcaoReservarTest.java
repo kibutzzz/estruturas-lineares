@@ -1,8 +1,10 @@
 package laboratorio2.acao;
 
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.inOrder;
 
 import laboratorio2.Mapa;
@@ -69,6 +71,45 @@ class AcaoReservarTest {
         then(input).should(order).lerLinha();
         then(extratorDeCoordenadas).should(order).extrair("A20");
         then(mapa).should(order).reservar("Nome", 0, 19);
+
+        then(logger).shouldHaveNoMoreInteractions();
+        then(input).shouldHaveNoMoreInteractions();
+        then(mapa).shouldHaveNoMoreInteractions();
+        then(extratorDeCoordenadas).shouldHaveNoMoreInteractions();
+    }
+
+    @Test
+    void shouldRetryWhenUsingAnAlreadyOccupiedPosition() {
+        given(input.lerLinha())
+                .willReturn("primeiro nome")
+                .willReturn("A1")
+                .willReturn("segundo nome")
+                .willReturn("b2");
+
+        given(extratorDeCoordenadas.extrair(anyString()))
+                .willReturn(new int[] {0, 0})
+                .willReturn(new int[] {1, 1});
+
+        doThrow(new IllegalStateException("Posicao já reservada"))
+                .when(mapa)
+                .reservar(anyString(), eq(0), eq(0));
+
+        acaoReservar.accept(mapa);
+
+        final var order = inOrder(logger, input, extratorDeCoordenadas, mapa);
+        then(logger).should(order).imprimirLinha("Digite o nome: ");
+        then(input).should(order).lerLinha();
+        then(logger).should(order).imprimirLinha("Selecione um assento: ");
+        then(input).should(order).lerLinha();
+        then(extratorDeCoordenadas).should(order).extrair("A1");
+        then(mapa).should(order).reservar("primeiro nome", 0, 0);
+        then(logger).should(order).imprimirLinha("Posicao já reservada");
+        then(logger).should(order).imprimirLinha("Digite o nome: ");
+        then(input).should(order).lerLinha();
+        then(logger).should(order).imprimirLinha("Selecione um assento: ");
+        then(input).should(order).lerLinha();
+        then(extratorDeCoordenadas).should(order).extrair("b2");
+        then(mapa).should(order).reservar("segundo nome", 1, 1);
 
         then(logger).shouldHaveNoMoreInteractions();
         then(input).shouldHaveNoMoreInteractions();

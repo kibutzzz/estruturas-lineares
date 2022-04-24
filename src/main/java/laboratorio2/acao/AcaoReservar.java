@@ -33,6 +33,9 @@ public class AcaoReservar implements Consumer<Mapa> {
         } catch (IllegalArgumentException exception) {
             logger.imprimirLinha("Posicão invalida. Tente novamente");
             accept(mapa);
+        } catch (IllegalStateException exception) {
+            logger.imprimirLinha(exception.getMessage());
+            accept(mapa);
         } catch (Exception e) {
             logger.imprimirLinha("Erro ao selecionar o assento. Cancelando ação");
         }
