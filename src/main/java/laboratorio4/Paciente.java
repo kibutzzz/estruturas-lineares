@@ -19,5 +19,4 @@ public class Paciente implements Comparable<Paciente> {
     public String getNome() {
         return nome;
     }
-
 }
