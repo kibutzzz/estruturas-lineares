@@ -1,7 +1,8 @@
 package laboratorio6;
 
+import static java.util.Comparator.comparingInt;
+
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class Urna {
@@ -15,25 +16,25 @@ public class Urna {
 
     public Candidato readMostVoted() {
         return candidatos.stream()
-                .max(Comparator.comparingInt(Candidato::getVotos))
+                .max(comparingInt(Candidato::getVotos))
                 .orElseThrow(() -> new IllegalStateException(NO_CANDIDATES_MESSAGE));
     }
 
     public Candidato readLeastVoted() {
         return candidatos.stream()
-                .min(Comparator.comparingInt(Candidato::getVotos))
+                .min(comparingInt(Candidato::getVotos))
                 .orElseThrow(() -> new IllegalStateException(NO_CANDIDATES_MESSAGE));
     }
 
     public Candidato readOldest() {
         return candidatos.stream()
-                .max(Comparator.comparingInt(Candidato::getIdade))
+                .max(comparingInt(Candidato::getIdade))
                 .orElseThrow(() -> new IllegalStateException(NO_CANDIDATES_MESSAGE));
     }
 
     public Candidato readYoungest() {
         return candidatos.stream()
-                .min(Comparator.comparingInt(Candidato::getIdade))
+                .min(comparingInt(Candidato::getIdade))
                 .orElseThrow(() -> new IllegalStateException(NO_CANDIDATES_MESSAGE));
     }
 
