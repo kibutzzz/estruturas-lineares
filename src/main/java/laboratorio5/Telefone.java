@@ -60,12 +60,3 @@ public class Telefone {
     }
 }
 
-// try {
-//
-//	final var contatoRemovido = contatos.stream()
-//			.filter(contato -> contato.getNumero().equals(numero)).findFirst().orElseThrow();
-//
-// } catch (NoSuchElementException e) {
-//	System.out.println("Contato não encontrado.");
-// }
-// }
