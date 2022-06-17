@@ -3,10 +3,9 @@ package controledeestoque.acoes;
 import static java.lang.String.format;
 
 import controledeestoque.Estoque;
-import java.util.function.Consumer;
 import laboratorio2.helper.SimpleLogger;
 
-public class ListarProdutos implements Consumer<Estoque> {
+public class ListarProdutos implements ItemDeMenu<Estoque> {
 
     public static final String FORMATO_IMPRESSAO = "%10s - %15s - %10s - %10s";
     private SimpleLogger logger;
@@ -34,5 +33,10 @@ public class ListarProdutos implements Consumer<Estoque> {
                                         produto.getNome(),
                                         produto.getQuantidade(),
                                         produto.getQuantidadeMinima())));
+    }
+
+    @Override
+    public String getNome() {
+        return "Listar produtos";
     }
 }

@@ -52,4 +52,9 @@ class ListarProdutosTest {
                 .imprimirLinha("         2 -          Feijão -          2 -         10");
         then(logger).shouldHaveNoMoreInteractions();
     }
+
+    @Test
+    void deveTerNomeCorreto() {
+        assertEquals("Listar produtos", acao.getNome());
+    }
 }
