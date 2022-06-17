@@ -46,15 +46,7 @@ package acoes {
     + accept(estoque: Estoque): void
   }
 
-  class AdicionarQuantidade implements ItemDeMenu {
-    - logger: SimpleLogger
-    - input: SimpleInput
-
-    + accept(estoque: Estoque): void
-  }
-
-
-  class RemoverQuantidade implements ItemDeMenu {
+  class AlterarQuantidade implements ItemDeMenu {
     - logger: SimpleLogger
     - input: SimpleInput
 
