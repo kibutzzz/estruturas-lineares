@@ -17,8 +17,12 @@ class Estoque {
   + listarProdutosAbaixoMinimo(): List<Produto>
 }
 
-interface Consumer<Estoque> {
-  + + accept(estoque: Estoque): void
+interface Consumer<T> {
+  + accept(estoque: Estoque): void
+}
+
+interface ItemDeMenu<T> extends Consumer {
+  + getNome(): String
 }
 
 package helper {
@@ -35,14 +39,14 @@ package helper {
 
 package acoes {
 
-  class AdicionarProduto implements Consumer {
+  class AdicionarProduto implements ItemDeMenu {
     - logger: SimpleLogger
     - input: SimpleInput
 
     + accept(estoque: Estoque): void
   }
 
-  class AdicionarQuantidade implements Consumer {
+  class AdicionarQuantidade implements ItemDeMenu {
     - logger: SimpleLogger
     - input: SimpleInput
 
@@ -50,20 +54,20 @@ package acoes {
   }
 
 
-  class RemoverQuantidade implements Consumer {
+  class RemoverQuantidade implements ItemDeMenu {
     - logger: SimpleLogger
     - input: SimpleInput
 
     + accept(estoque: Estoque): void
   }
 
-  class ListarProdutos implements Consumer {
+  class ListarProdutos implements ItemDeMenu {
     - logger: SimpleLogger
 
     + accept(estoque: Estoque): void
   }
 
-  class Sair implements Consumer {
+  class Sair implements ItemDeMenu {
     - ui: Ui
     + accept(estoque: Estoque): void
   }
@@ -71,7 +75,7 @@ package acoes {
 }
 
 class Ui {
-  - acoes : Consumer<Estoque>
+  - acoes : ItemDeMenu<Estoque>
 
   + executar() : void
   + sair(): void
@@ -83,7 +87,7 @@ class Bootstrap {
 
 
 Bootstrap .. Ui
-Ui --> Consumer
+Ui --> ItemDeMenu
 Sair --> Ui
 Consumer .up. Estoque
 acoes .up. helper
