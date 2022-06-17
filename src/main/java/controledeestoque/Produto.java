@@ -1,5 +1,7 @@
 package controledeestoque;
 
+import java.util.Objects;
+
 public class Produto {
 
     private String codigo;
@@ -32,5 +34,21 @@ public class Produto {
 
     public int getQuantidadeMinima() {
         return quantidadeMinima;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Produto produto = (Produto) o;
+        return quantidade == produto.quantidade
+                && quantidadeMinima == produto.quantidadeMinima
+                && Objects.equals(codigo, produto.codigo)
+                && Objects.equals(nome, produto.nome);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(codigo, nome, quantidade, quantidadeMinima);
     }
 }
