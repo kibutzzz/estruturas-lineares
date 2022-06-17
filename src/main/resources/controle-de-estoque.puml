@@ -66,6 +66,12 @@ package acoes {
 
     + accept(estoque: Estoque): void
   }
+  
+  class ListarProdutosAbaixoMinimo implements ItemDeMenu {
+    - logger: SimpleLogger
+
+    + accept(estoque: Estoque): void
+  }
 
   class Sair implements ItemDeMenu {
     - ui: Ui
