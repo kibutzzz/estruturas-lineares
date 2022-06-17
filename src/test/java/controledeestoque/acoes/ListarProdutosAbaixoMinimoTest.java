@@ -26,7 +26,7 @@ class ListarProdutosAbaixoMinimoTest {
 
         acao.accept(estoque);
 
-        then(logger).should().imprimirLinha("Não há produtos cadastrados");
+        then(logger).should().imprimirLinha("Não há produtos cadastrados abaixo do estoque minimo");
         then(logger).shouldHaveNoMoreInteractions();
     }
 

@@ -19,7 +19,7 @@ public class ListarProdutosAbaixoMinimo implements ItemDeMenu<Estoque> {
         final var produtosAbaixoMinimo = estoque.listarProdutosAbaixoMinimo();
 
         if (produtosAbaixoMinimo.isEmpty()) {
-            logger.imprimirLinha("Não há produtos cadastrados");
+            logger.imprimirLinha("Não há produtos cadastrados abaixo do estoque minimo");
             return;
         }
 
