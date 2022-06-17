@@ -21,6 +21,7 @@ public class ListarProdutos implements Consumer<Estoque> {
 
         if (produtos.isEmpty()) {
             logger.imprimirLinha("Não há produtos cadastrados");
+            return;
         }
 
         logger.imprimirLinha(format(FORMATO_IMPRESSAO, "Código", "Nome", "Qtd.", "Qtd. Min."));
