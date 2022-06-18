@@ -1,4 +1,4 @@
-# Trabalho final - GA - Controle de estoque
+# Trabalho final - Controle de estoque
 
 Observe o seguinte mapa:
 
