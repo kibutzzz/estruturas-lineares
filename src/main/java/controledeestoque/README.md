@@ -1,7 +1,5 @@
 # Trabalho final - Controle de estoque
 
-Observe o seguinte mapa:
-
 O Sistema deve apresentar as seguintes opções: Inserir produto, adicionar quantidade de produtos no
 estoque, retirar quantidade de produtos no estoque, listar todos os produtos, listar produtos que estão
 abaixo do estoque e sair.
