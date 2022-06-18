@@ -1,0 +1,94 @@
+@startuml controle-de-estoque
+
+class Produto {
+  - codigo: String
+  - nome: String
+  - quantidade: int
+  - quantidadeMinima: int
+
+  + alterarQuantidade(novaQuantidade: int)
+}
+
+class Estoque {
+  - produtos: List<Produto>
+  + adicionarProduto(produto: Produto): void
+  + alterarQuantidadeDeProduto(codigo: String, novaQuantidade: int): void
+  + listarProdutos(): List<Produto>
+  + listarProdutosAbaixoMinimo(): List<Produto>
+}
+
+interface Consumer<T> {
+  + accept(estoque: Estoque): void
+}
+
+interface ItemDeMenu<T> extends Consumer {
+  + getNome(): String
+}
+
+package helper {
+  class SimpleLogger {
+    + imprimirLinha(texto: String): void
+    + imprimir(texto: String): void
+  }
+
+  class SimpleInput {
+    + lerLinha(): String
+    + lerInteiro(): int
+  }
+}
+
+package acoes {
+
+  class AdicionarProduto implements ItemDeMenu {
+    - logger: SimpleLogger
+    - input: SimpleInput
+
+    + accept(estoque: Estoque): void
+  }
+
+  class AlterarQuantidade implements ItemDeMenu {
+    - logger: SimpleLogger
+    - input: SimpleInput
+
+    + accept(estoque: Estoque): void
+  }
+
+  class ListarProdutos implements ItemDeMenu {
+    - logger: SimpleLogger
+
+    + accept(estoque: Estoque): void
+  }
+  
+  class ListarProdutosAbaixoMinimo implements ItemDeMenu {
+    - logger: SimpleLogger
+
+    + accept(estoque: Estoque): void
+  }
+
+  class Sair implements ItemDeMenu {
+    - ui: Ui
+    + accept(estoque: Estoque): void
+  }
+
+}
+
+class Ui {
+  - acoes : ItemDeMenu<Estoque>
+
+  + executar() : void
+  + sair(): void
+}
+
+class Bootstrap {
+  + {static} main():void
+}
+
+
+Bootstrap .. Ui
+Ui --> ItemDeMenu
+Sair --> Ui
+Consumer .up. Estoque
+acoes .up. helper
+Estoque -left-> Produto
+
+@enduml
